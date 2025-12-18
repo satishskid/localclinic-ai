@@ -27,13 +27,13 @@
 ## Submission Steps
 
 ### Step 1: Enable GitHub Pages
-1. Go to https://github.com/satishskid/ConciousAI/settings/pages
+1. Go to https://github.com/satishskid/localclinic-ai/settings/pages
 2. Under "Source", select "Deploy from a branch"
 3. Select branch: `main`
 4. Select folder: `/docs`
 5. Click "Save"
 6. Wait 1-2 minutes for deployment
-7. Verify: https://satishskid.github.io/ConciousAI/
+7. Verify: https://satishskid.github.io/localclinic-ai/
 
 ### Step 2: Chrome Web Store Developer Account
 1. Go to https://chrome.google.com/webstore/devconsole
@@ -98,7 +98,7 @@ Copy from `store-assets/CHROME_STORE_FORM_DATA.md`:
 |------|-------|
 | ZIP File | `dist-extension/ai-medical-assistant.zip` |
 | ZIP Size | 39.8 KB |
-| Privacy URL | `https://satishskid.github.io/ConciousAI/` |
-| GitHub Repo | `https://github.com/satishskid/ConciousAI` |
+| Privacy URL | `https://satishskid.github.io/localclinic-ai/` |
+| GitHub Repo | `https://github.com/satishskid/localclinic-ai` |
 | Manifest Version | 3 |
 | Permissions | activeTab, contextMenus, storage, scripting |

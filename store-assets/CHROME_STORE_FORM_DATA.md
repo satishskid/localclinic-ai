@@ -78,7 +78,7 @@ PRIVACY COMMITMENT:
 
 We built this tool with privacy as the foundation, not an afterthought. Healthcare data is sensitive, and we believe it should never leave your control. That's why every analysis happens right on your device using cutting-edge browser AI technology.
 
-Read our full privacy policy: https://satishskid.github.io/ConciousAI/
+Read our full privacy policy: https://satishskid.github.io/localclinic-ai/
 
 DISCLAIMER:
 
@@ -166,7 +166,7 @@ No
 
 ## Privacy Policy URL
 ```
-https://satishskid.github.io/ConciousAI/
+https://satishskid.github.io/localclinic-ai/
 ```
 
 ---
@@ -194,7 +194,7 @@ All regions
 
 ### Website (Optional)
 ```
-https://github.com/satishskid/ConciousAI
+https://github.com/satishskid/localclinic-ai
 ```
 
 ---
