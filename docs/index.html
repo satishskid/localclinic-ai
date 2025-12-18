@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Assistant - Privacy Policy</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-blue); }
+        header p { color: var(--text-secondary); }
+        .highlight-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .highlight-box p { color: var(--accent-green); font-weight: 500; }
+        section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #334155;
+        }
+        h2 { color: var(--accent-blue); margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { color: var(--text-primary); margin: 1.5rem 0 0.75rem; font-size: 1.1rem; }
+        ul { list-style: none; padding-left: 0; }
+        li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+        li.no::before { content: "X"; position: absolute; left: 0; color: var(--accent-red); font-weight: bold; }
+        li.yes::before { content: "+"; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Medical Assistant</h1>
+            <p>Privacy Policy</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">Last Updated: December 2024</p>
+        </header>
+
+        <div class="highlight-box">
+            <p>KEY POINT: All data processing occurs locally on your device. No medical data, personal information, or analysis results are ever transmitted to external servers.</p>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>AI Medical Assistant ("the Extension") is committed to protecting your privacy. This privacy policy explains how our browser extension handles your data.</p>
+        </section>
+
+        <section>
+            <h2>Data Collection and Processing</h2>
+            <h3>What We DO NOT Collect</h3>
+            <ul>
+                <li class="no"><strong>No Personal Health Information (PHI)</strong> is collected or transmitted</li>
+                <li class="no"><strong>No medical records</strong> are stored on external servers</li>
+                <li class="no"><strong>No patient data</strong> leaves your device</li>
+                <li class="no"><strong>No browsing history</strong> is tracked or collected</li>
+                <li class="no"><strong>No analytics or tracking</strong> data is sent to third parties</li>
+                <li class="no"><strong>No account registration</strong> is required</li>
+                <li class="no"><strong>No cookies</strong> are used for tracking purposes</li>
+            </ul>
+            <h3>What Stays on Your Device</h3>
+            <ul>
+                <li class="yes"><strong>AI Models:</strong> Downloaded once and cached locally in your browser</li>
+                <li class="yes"><strong>Analysis Results:</strong> Processed and displayed locally, never transmitted</li>
+                <li class="yes"><strong>User Preferences:</strong> Stored in browser's local storage only</li>
+                <li class="yes"><strong>Report Drafts:</strong> Saved locally until you choose to export them</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How the Extension Works</h2>
+            <h3>Local AI Processing</h3>
+            <ul>
+                <li class="yes"><strong>Text/Image Analysis:</strong> AI model runs entirely within your browser using WebAssembly</li>
+                <li class="yes"><strong>No Server Communication:</strong> Analysis requests never leave your device</li>
+                <li class="yes"><strong>Model Caching:</strong> AI models downloaded once from public CDN (Hugging Face) and cached locally</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Browser Permissions</h2>
+            <p>The extension requests minimal permissions required for functionality:</p>
+            <ul>
+                <li class="yes"><strong>activeTab:</strong> Access current tab content only when you click the extension</li>
+                <li class="yes"><strong>storage:</strong> Save your preferences locally in browser storage</li>
+                <li class="yes"><strong>contextMenus:</strong> Add right-click menu for quick analysis</li>
+                <li class="yes"><strong>scripting:</strong> Extract selected text/images for local analysis</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>HIPAA Compliance</h2>
+            <p>Our privacy-first architecture supports HIPAA compliance:</p>
+            <ul>
+                <li class="yes"><strong>No PHI Transmission:</strong> Protected health information never leaves your device</li>
+                <li class="yes"><strong>No BAA Required:</strong> Since we don't process or store any PHI, no Business Associate Agreement is needed</li>
+                <li class="yes"><strong>Local Processing:</strong> All analysis occurs on your machine</li>
+                <li class="yes"><strong>No Data Retention:</strong> We don't retain any medical or personal data</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Your Rights</h2>
+            <ul>
+                <li class="yes"><strong>Data Deletion:</strong> Clear browser data or uninstall extension to remove all local data</li>
+                <li class="yes"><strong>Data Access:</strong> All your data is already on your device - you have full access</li>
+                <li class="yes"><strong>Data Portability:</strong> Export reports in standard formats anytime</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>For questions about this privacy policy:</p>
+            <ul>
+                <li>GitHub: <a href="https://github.com/satishskid/ConciousAI">github.com/satishskid/ConciousAI</a></li>
+                <li>Issues: <a href="https://github.com/satishskid/ConciousAI/issues">Report an issue</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>AI Medical Assistant - 2024</p>
+            <p style="margin-top: 0.5rem;">Privacy-First Medical AI for Healthcare Professionals</p>
+        </footer>
+    </div>
+</body>
+</html>

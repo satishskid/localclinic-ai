@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Assistant</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <header class="popup-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>AI Medical Assistant</span>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot ready"></span>
+                <span>Ready</span>
+            </div>
+        </header>
+
+        <!-- Clinical Context Filters -->
+        <section class="context-filters">
+            <h3>🏥 Clinical Context</h3>
+            <div class="filter-row">
+                <select id="specialty-filter" class="filter-select">
+                    <option value="">Specialty...</option>
+                    <option value="ent">👂 ENT</option>
+                    <option value="dental">🦷 Dental</option>
+                    <option value="dermatology">🔬 Dermatology</option>
+                    <option value="pediatrics">👶 Pediatrics</option>
+                    <option value="womens_health">🩷 Women's Health</option>
+                    <option value="vitals">💓 Vitals</option>
+                    <option value="cardiology">❤️ Cardiology</option>
+                    <option value="radiology">📷 Radiology</option>
+                    <option value="gastro">🔍 Gastro</option>
+                </select>
+                <select id="age-filter" class="filter-select">
+                    <option value="">Age Group...</option>
+                    <option value="neonate">Neonate (0-28d)</option>
+                    <option value="infant">Infant (1-12m)</option>
+                    <option value="toddler">Toddler (1-3y)</option>
+                    <option value="child">Child (3-12y)</option>
+                    <option value="adolescent">Adolescent (12-18y)</option>
+                    <option value="adult">Adult (18-65y)</option>
+                    <option value="elderly">Elderly (65+)</option>
+                </select>
+            </div>
+            <div class="filter-row">
+                <select id="report-filter" class="filter-select full-width">
+                    <option value="">Report Type...</option>
+                    <optgroup label="ENT">
+                        <option value="audiometry">📊 Audiometry</option>
+                        <option value="laryngoscopy">🎥 Laryngoscopy</option>
+                        <option value="ct_sinus">🖼️ CT Sinus</option>
+                    </optgroup>
+                    <optgroup label="Dental">
+                        <option value="panoramic_xray">🖼️ Panoramic X-Ray</option>
+                        <option value="periapical_xray">🖼️ Periapical X-Ray</option>
+                        <option value="cbct">🖼️ CBCT 3D</option>
+                        <option value="intraoral_photo">📸 Intraoral Photo</option>
+                    </optgroup>
+                    <optgroup label="Dermatology">
+                        <option value="dermoscopy">🔬 Dermoscopy</option>
+                        <option value="skin_photo">📸 Skin Photo</option>
+                        <option value="wound_assessment">🩹 Wound Assessment</option>
+                    </optgroup>
+                    <optgroup label="Pediatrics">
+                        <option value="well_child_exam">👶 Well Child Exam</option>
+                        <option value="newborn_exam">🍼 Newborn Exam</option>
+                        <option value="growth_chart">📈 Growth Chart</option>
+                        <option value="developmental_screen">🧩 Developmental Screen</option>
+                        <option value="immunization_record">💉 Immunization Record</option>
+                        <option value="school_physical">🏫 School Physical</option>
+                    </optgroup>
+                    <optgroup label="Women's Health">
+                        <option value="pelvic_exam">🩷 Pelvic Exam</option>
+                        <option value="pap_smear">🔬 Pap Smear</option>
+                        <option value="mammogram">🖼️ Mammogram</option>
+                        <option value="pelvic_ultrasound">📷 Pelvic Ultrasound</option>
+                        <option value="transvaginal_ultrasound">📷 Transvaginal US</option>
+                        <option value="fertility_labs">🧪 Fertility Labs</option>
+                        <option value="prenatal_visit">🤰 Prenatal Visit</option>
+                        <option value="fetal_ultrasound">👶 Fetal Ultrasound</option>
+                    </optgroup>
+                    <optgroup label="Cardiology">
+                        <option value="ecg_12lead">📈 12-Lead ECG</option>
+                        <option value="echocardiogram">🎥 Echocardiogram</option>
+                    </optgroup>
+                    <optgroup label="Radiology">
+                        <option value="xray">🖼️ X-Ray</option>
+                        <option value="ct_scan">🖼️ CT Scan</option>
+                        <option value="mri">🖼️ MRI</option>
+                        <option value="ultrasound">🖼️ Ultrasound</option>
+                    </optgroup>
+                    <optgroup label="General">
+                        <option value="clinical_notes">📝 Clinical Notes</option>
+                        <option value="lab_results">🧪 Lab Results</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="context-summary" id="context-summary">
+                <span class="context-badge">General Analysis</span>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h3>🎯 Quick Actions</h3>
+            
+            <button class="action-btn primary" id="analyze-selection">
+                <span class="icon">📝</span>
+                <div class="action-text">
+                    <strong>Analyze Selection</strong>
+                    <small>Select text on page, then click</small>
+                </div>
+            </button>
+
+            <button class="action-btn" id="analyze-page">
+                <span class="icon">📄</span>
+                <div class="action-text">
+                    <strong>Analyze Entire Page</strong>
+                    <small>Scan all visible content</small>
+                </div>
+            </button>
+
+            <button class="action-btn" id="capture-region">
+                <span class="icon">🖼️</span>
+                <div class="action-text">
+                    <strong>Capture Region</strong>
+                    <small>Select area to analyze</small>
+                </div>
+            </button>
+
+            <button class="action-btn" id="analyze-image">
+                <span class="icon">🔬</span>
+                <div class="action-text">
+                    <strong>Analyze Image</strong>
+                    <small>Right-click any image</small>
+                </div>
+            </button>
+        </section>
+
+        <!-- Analysis Type -->
+        <section class="analysis-type">
+            <h3>📊 Analysis Type</h3>
+            <div class="type-buttons">
+                <button class="type-btn active" data-type="diagnosis">Diagnosis Aid</button>
+                <button class="type-btn" data-type="summary">Summary</button>
+                <button class="type-btn" data-type="findings">Key Findings</button>
+                <button class="type-btn" data-type="recommendations">Recommendations</button>
+            </div>
+        </section>
+
+        <!-- Results Preview -->
+        <section class="results-section" id="results-section" style="display: none;">
+            <h3>🤖 AI Analysis</h3>
+            <div class="results-context" id="results-context"></div>
+            <div class="results-content" id="results-content">
+                <!-- Results appear here -->
+            </div>
+            <div class="results-actions">
+                <button class="btn-secondary" id="copy-results">📋 Copy</button>
+                <button class="btn-primary" id="add-to-report">➕ Add to Report</button>
+            </div>
+        </section>
+
+        <!-- Privacy Notice -->
+        <footer class="privacy-notice">
+            <span class="privacy-icon">🔒</span>
+            <span>All AI processing happens locally. No data leaves your device.</span>
+        </footer>
+
+        <!-- Instructions for first time -->
+        <section class="instructions" id="instructions">
+            <h3>👋 How to Use</h3>
+            <ol>
+                <li><strong>Set context</strong> (specialty, age) for better results</li>
+                <li><strong>Select text</strong> on any medical webpage</li>
+                <li>Click <strong>"Analyze Selection"</strong> above</li>
+                <li>Review AI findings</li>
+                <li>Copy or add to your report</li>
+            </ol>
+            <button class="btn-link" id="hide-instructions">Got it, don't show again</button>
+        </section>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

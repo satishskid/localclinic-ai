@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Assistant - Local Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" crossorigin src="/assets/index-D3jRhgFq.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CHeywXe_.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <div class="login-container">
+                <div class="logo">
+                    <i class="fas fa-stethoscope"></i>
+                    <h1>AI Medical Assistant</h1>
+                    <p>Local AI-Powered Analysis for ENT & Dental</p>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="doctor-id">Doctor ID</label>
+                        <input type="text" id="doctor-id" placeholder="Enter your doctor ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <div class="privacy-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>All AI processing happens locally on your device</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div id="main-app" class="screen">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>AI Medical Assistant</span>
+                </div>
+                <div class="header-center">
+                    <div class="model-status" id="model-status">
+                        <i class="fas fa-circle"></i>
+                        <span>Loading AI Model...</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <span id="doctor-name">Dr. Smith</span>
+                    <button id="logout-btn" class="btn btn-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <h3><i class="fas fa-folder-open"></i> Patient Cases</h3>
+                        <ul class="case-list" id="case-list">
+                            <li class="case-item active" data-case="1">
+                                <span class="case-name">Patient: John Doe</span>
+                                <span class="case-date">Dec 11, 2025</span>
+                            </li>
+                            <li class="case-item" data-case="2">
+                                <span class="case-name">Patient: Jane Smith</span>
+                                <span class="case-date">Dec 10, 2025</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-section">
+                        <h3><i class="fas fa-history"></i> Recent Reports</h3>
+                        <ul class="report-list" id="report-list">
+                            <li class="report-item">ENT Examination #1024</li>
+                            <li class="report-item">Dental X-Ray #1023</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Content Area -->
+                <main class="content-area">
+                    <!-- Content Display Panel -->
+                    <div class="content-panel">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-file-medical"></i> Patient Content</h2>
+                            <div class="panel-actions">
+                                <button class="btn btn-secondary" id="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload
+                                </button>
+                                <button class="btn btn-secondary" id="capture-screen-btn">
+                                    <i class="fas fa-desktop"></i> Capture Screen
+                                </button>
+                                <button class="btn btn-primary" id="analyze-tab-btn">
+                                    <i class="fas fa-magic"></i> Analyze Visible Content
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-display" id="content-display">
+                            <!-- Sample content for demonstration -->
+                            <!-- External Content Frame - For analyzing other web content -->
+                            <div class="content-section" id="external-content-section">
+                                <h3><i class="fas fa-globe"></i> External Content Viewer</h3>
+                                <div class="external-content-controls">
+                                    <input type="url" id="external-url" placeholder="Enter URL to load content (e.g., patient portal, EHR system)">
+                                    <button class="btn btn-secondary" id="load-external-url">
+                                        <i class="fas fa-external-link-alt"></i> Load
+                                    </button>
+                                </div>
+                                <div class="external-frame-container" id="external-frame-container">
+                                    <div class="frame-placeholder">
+                                        <i class="fas fa-window-restore"></i>
+                                        <p>Load external content or use "Analyze Visible Content" to capture any open tab</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-section" id="text-section">
+                                <h3>Clinical Notes</h3>
+                                <p class="selectable-text" data-type="text">
+                                    Patient presents with persistent ear pain in the right ear for the past 5 days. 
+                                    Reports mild hearing loss and occasional tinnitus. No fever or discharge observed. 
+                                    Previous history of recurrent otitis media in childhood. Physical examination shows 
+                                    mild erythema of the tympanic membrane with no perforation visible. 
+                                    Recommended audiometry and possible CT scan if symptoms persist.
+                                </p>
+                            </div>
+                            
+                            <div class="content-section" id="image-section">
+                                <h3>Medical Images</h3>
+                                <div class="image-gallery">
+                                    <div class="image-container selectable-content" data-type="image">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect fill='%23f0f0f0' width='300' height='200'/%3E%3Ctext fill='%23666' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle'%3EEar Examination Image%3C/text%3E%3C/svg%3E" alt="Ear examination">
+                                        <span class="image-label">Right Ear - Otoscopy</span>
+                                    </div>
+                                    <div class="image-container selectable-content" data-type="image">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect fill='%23f0f0f0' width='300' height='200'/%3E%3Ctext fill='%23666' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle'%3EDental X-Ray Image%3C/text%3E%3C/svg%3E" alt="Dental X-ray">
+                                        <span class="image-label">Dental Panoramic X-Ray</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="content-section" id="video-section">
+                                <h3>Examination Videos</h3>
+                                <div class="video-gallery">
+                                    <div class="video-container selectable-content" data-type="video">
+                                        <video controls id="sample-video">
+                                            <source src="" type="video/mp4">
+                                            Your browser does not support video playback.
+                                        </video>
+                                        <span class="video-label">Endoscopy Recording</span>
+                                        <div class="video-placeholder">
+                                            <i class="fas fa-video"></i>
+                                            <span>Click to load video or drag & drop</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Analysis Panel -->
+                    <div class="analysis-panel" id="analysis-panel">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-robot"></i> AI Analysis</h2>
+                            <button class="btn btn-icon" id="close-analysis">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="analysis-content">
+                            <div class="selected-content-preview" id="selected-preview">
+                                <h4>Selected Content</h4>
+                                <div class="preview-area" id="preview-area">
+                                    <!-- Preview of selected content -->
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-options">
+                                <h4>Analysis Type</h4>
+                                <div class="option-buttons">
+                                    <button class="option-btn active" data-analysis="diagnosis">
+                                        <i class="fas fa-diagnoses"></i> Diagnosis Aid
+                                    </button>
+                                    <button class="option-btn" data-analysis="summary">
+                                        <i class="fas fa-file-alt"></i> Summary
+                                    </button>
+                                    <button class="option-btn" data-analysis="findings">
+                                        <i class="fas fa-search"></i> Key Findings
+                                    </button>
+                                    <button class="option-btn" data-analysis="recommendations">
+                                        <i class="fas fa-lightbulb"></i> Recommendations
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-large" id="run-analysis">
+                                <i class="fas fa-play"></i> Run AI Analysis
+                            </button>
+                            
+                            <div class="analysis-progress" id="analysis-progress" style="display: none;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                                <span class="progress-text" id="progress-text">Analyzing...</span>
+                            </div>
+                            
+                            <div class="analysis-result" id="analysis-result">
+                                <h4>AI Analysis Result</h4>
+                                <div class="result-content" id="result-content">
+                                    <!-- Analysis results appear here -->
+                                    <p class="placeholder-text">Select content and click "Run AI Analysis" to get AI-assisted insights.</p>
+                                </div>
+                                
+                                <div class="result-actions" id="result-actions" style="display: none;">
+                                    <button class="btn btn-secondary" id="edit-result">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-secondary" id="regenerate-result">
+                                        <i class="fas fa-redo"></i> Regenerate
+                                    </button>
+                                    <button class="btn btn-primary" id="add-to-report">
+                                        <i class="fas fa-plus"></i> Add to Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Report Panel -->
+                <aside class="report-panel">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-clipboard-list"></i> Report Draft</h2>
+                    </div>
+                    <div class="report-content">
+                        <div class="report-section">
+                            <label>Patient Information</label>
+                            <input type="text" id="patient-name" placeholder="Patient Name" value="John Doe">
+                            <input type="text" id="patient-id" placeholder="Patient ID" value="PT-2025-1234">
+                        </div>
+                        
+                        <div class="report-section">
+                            <label>Examination Date</label>
+                            <input type="date" id="exam-date" value="2025-12-11">
+                        </div>
+                        
+                        <div class="report-section">
+                            <label>AI-Assisted Findings</label>
+                            <div class="findings-list" id="findings-list">
+                                <p class="placeholder-text">No findings added yet. Run AI analysis and add results.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-section">
+                            <label>Doctor's Notes</label>
+                            <textarea id="doctor-notes" placeholder="Add your clinical notes and observations..."></textarea>
+                        </div>
+                        
+                        <div class="report-section">
+                            <label>Final Diagnosis</label>
+                            <textarea id="final-diagnosis" placeholder="Enter final diagnosis..."></textarea>
+                        </div>
+                        
+                        <div class="report-actions">
+                            <button class="btn btn-secondary" id="save-draft">
+                                <i class="fas fa-save"></i> Save Draft
+                            </button>
+                            <button class="btn btn-primary" id="submit-report">
+                                <i class="fas fa-paper-plane"></i> Submit Report
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Selection Toolbar (floating) -->
+        <div class="selection-toolbar" id="selection-toolbar">
+            <button class="toolbar-btn" id="analyze-selection" title="Analyze with AI">
+                <i class="fas fa-robot"></i>
+            </button>
+            <button class="toolbar-btn" id="copy-selection" title="Copy">
+                <i class="fas fa-copy"></i>
+            </button>
+            <button class="toolbar-btn" id="highlight-selection" title="Highlight">
+                <i class="fas fa-highlighter"></i>
+            </button>
+            <button class="toolbar-btn" id="add-note-selection" title="Add Note">
+                <i class="fas fa-sticky-note"></i>
+            </button>
+        </div>
+
+        <!-- Screen Capture Overlay -->
+        <div class="screen-capture-overlay" id="screen-capture-overlay">
+            <div class="capture-instructions">
+                <i class="fas fa-crosshairs"></i>
+                <p>Click and drag to select an area, or press ESC to cancel</p>
+            </div>
+            <canvas id="capture-canvas"></canvas>
+        </div>
+
+        <!-- Upload Modal -->
+        <div class="modal" id="upload-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-upload"></i> Upload Content</h3>
+                    <button class="btn btn-icon modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-zone" id="upload-zone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop files here or click to browse</p>
+                        <span>Supports: Images (PNG, JPG), Videos (MP4, WebM), Documents (PDF)</span>
+                        <input type="file" id="file-input" multiple accept="image/*,video/*,.pdf">
+                    </div>
+                    <div class="upload-preview" id="upload-preview"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary modal-close">Cancel</button>
+                    <button class="btn btn-primary" id="confirm-upload">Upload</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+</body>
+</html>

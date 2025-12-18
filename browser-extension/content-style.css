@@ -1,0 +1,219 @@
+/* Content Script Styles - AI Medical Assistant */
+
+/* Floating Action Button */
+#ai-floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    z-index: 999999;
+    transition: all 0.3s ease;
+}
+
+#ai-floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+}
+
+/* Results Panel */
+#ai-results-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 380px;
+    max-height: 80vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.ai-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ai-results-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-results-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.ai-results-content {
+    padding: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1e293b;
+}
+
+.ai-results-summary {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #f0f9ff;
+    border-radius: 8px;
+    border-left: 3px solid #2563eb;
+}
+
+.ai-results-section {
+    margin-bottom: 12px;
+}
+
+.ai-results-section strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #1e293b;
+}
+
+.ai-results-section ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.ai-results-section li {
+    padding: 4px 0;
+    padding-left: 0;
+}
+
+.ai-results-confidence {
+    font-size: 11px;
+    color: #64748b;
+    text-align: right;
+    margin-top: 8px;
+}
+
+.ai-results-footer {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.ai-results-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    color: #1e293b;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ai-results-btn:hover {
+    background: #f8fafc;
+}
+
+.ai-results-btn.primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.ai-results-btn.primary:hover {
+    background: #1d4ed8;
+}
+
+.ai-results-privacy {
+    padding: 8px 16px;
+    background: #f0fdf4;
+    color: #047857;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* Capture Overlay */
+#ai-capture-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999998;
+    cursor: crosshair;
+}
+
+.ai-capture-instructions {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    z-index: 999999;
+}
+
+.ai-capture-instructions button {
+    padding: 6px 12px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.ai-capture-instructions button:hover {
+    background: #e2e8f0;
+}
+
+.ai-capture-selection {
+    position: fixed;
+    border: 2px solid #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+    pointer-events: none;
+}
+
+/* Selection highlight when text is selected */
+::selection {
+    background: rgba(37, 99, 235, 0.2);
+}

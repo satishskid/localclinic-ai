@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <linearGradient id="bgGrad16" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="8" cy="8" r="7.5" fill="url(#bgGrad16)"/>
+  
+  <!-- Medical Cross - simplified -->
+  <rect x="6.5" y="3" width="3" height="10" rx="0.75" fill="white"/>
+  <rect x="3" y="6.5" width="10" height="3" rx="0.75" fill="white"/>
+  
+  <!-- Single pulse accent -->
+  <circle cx="8" cy="8" r="1" fill="#22c55e"/>
+</svg>
