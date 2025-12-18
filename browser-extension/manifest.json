@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AI Medical Assistant",
   "version": "1.0.0",
-  "description": "HIPAA-friendly AI assistant for medical professionals. Analyze clinical text, images & videos locally.",
+  "description": "Analyze medical text, images & videos with AI. 100% local processing - your patient data never leaves your device.",
   "permissions": [
     "activeTab",
     "storage",
