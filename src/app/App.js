@@ -66,12 +66,45 @@ export class App {
         document.getElementById('logout-btn').addEventListener('click', () => {
             this.logout();
         });
+
+        // Help button handler
+        document.getElementById('help-btn')?.addEventListener('click', () => {
+            this.showHelpModal();
+        });
+    }
+
+    showHelpModal() {
+        const modal = document.getElementById('help-modal');
+        if (modal) {
+            modal.classList.add('active');
+            // Close modal handlers
+            modal.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                });
+            });
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
     }
     
     showMainApp() {
         document.getElementById('login-screen').classList.remove('active');
         document.getElementById('main-app').classList.add('active');
         document.getElementById('doctor-name').textContent = this.currentUser.name;
+        
+        // Show help modal for first-time users
+        const hasSeenHelp = localStorage.getItem('hasSeenHelp');
+        if (!hasSeenHelp) {
+            setTimeout(() => {
+                this.showHelpModal();
+                localStorage.setItem('hasSeenHelp', 'true');
+            }, 1000);
+        }
         
         // Start loading AI model
         this.loadAIModel();
@@ -130,10 +163,11 @@ export class App {
         });
         
         // Selection toolbar actions
-        document.getElementById('analyze-selection').addEventListener('click', () => {
+        document.getElementById('analyze-selection').addEventListener('click', async () => {
             const selection = this.selectionManager.getCurrentSelection();
             if (selection) {
-                this.startAnalysis(selection);
+                const analysisType = document.querySelector('.analysis-type-btn.active')?.dataset?.type || 'summary';
+                await this.runAnalysis(selection, analysisType);
             }
         });
         

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Medical Assistant - Local Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script type="module" crossorigin src="/assets/index-D3jRhgFq.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CHeywXe_.css">
+  <script type="module" crossorigin src="/assets/index-DLWSSkP1.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DZjGCW8I.css">
 </head>
 <body>
     <div id="app">
@@ -67,21 +67,19 @@
                     <div class="sidebar-section">
                         <h3><i class="fas fa-folder-open"></i> Patient Cases</h3>
                         <ul class="case-list" id="case-list">
-                            <li class="case-item active" data-case="1">
-                                <span class="case-name">Patient: John Doe</span>
-                                <span class="case-date">Dec 11, 2025</span>
-                            </li>
-                            <li class="case-item" data-case="2">
-                                <span class="case-name">Patient: Jane Smith</span>
-                                <span class="case-date">Dec 10, 2025</span>
+                            <li class="case-item empty-state">
+                                <span class="case-name"><i class="fas fa-plus-circle"></i> No cases yet</span>
+                                <span class="case-date">Start by analyzing content</span>
                             </li>
                         </ul>
+                        <button class="btn btn-small btn-secondary" id="help-btn" style="margin-top: 10px; width: 100%;">
+                            <i class="fas fa-question-circle"></i> How to Use
+                        </button>
                     </div>
                     <div class="sidebar-section">
                         <h3><i class="fas fa-history"></i> Recent Reports</h3>
                         <ul class="report-list" id="report-list">
-                            <li class="report-item">ENT Examination #1024</li>
-                            <li class="report-item">Dental X-Ray #1023</li>
+                            <li class="report-item empty-state">No reports yet</li>
                         </ul>
                     </div>
                 </aside>
@@ -330,6 +328,113 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary modal-close">Cancel</button>
                     <button class="btn btn-primary" id="confirm-upload">Upload</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help/User Manual Modal -->
+        <div class="modal" id="help-modal">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h2><i class="fas fa-book-medical"></i> How to Use LocalClinic AI</h2>
+                    <button class="modal-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <div class="help-section">
+                        <h3>🚀 Quick Start</h3>
+                        <ol>
+                            <li><strong>Wait for AI to load</strong> - Look for the green "AI Model Ready" indicator at the top</li>
+                            <li><strong>Choose your input method</strong> - Use one of the tabs below</li>
+                            <li><strong>Select analysis type</strong> - Choose from Diagnosis Aid, Summary, Key Findings, or Recommendations</li>
+                            <li><strong>Click Analyze</strong> - View AI-assisted findings on the right panel</li>
+                        </ol>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>📋 Input Methods</h3>
+                        <table class="help-table">
+                            <tr>
+                                <td><strong>Patient Content</strong></td>
+                                <td>Paste or type clinical notes directly into the text area</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Upload</strong></td>
+                                <td>Upload images (X-rays, photos), videos, or PDF documents</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Capture Screen</strong></td>
+                                <td>Capture content from another window or tab (e.g., your EMR)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyze Visible Content</strong></td>
+                                <td>Analyze currently displayed content in the viewer</td>
+                            </tr>
+                            <tr>
+                                <td><strong>External Content (URL)</strong></td>
+                                <td>Load content from a URL (e.g., online medical records)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>🎯 Analysis Types</h3>
+                        <table class="help-table">
+                            <tr>
+                                <td><strong>Diagnosis Aid</strong></td>
+                                <td>Get AI suggestions for possible diagnoses based on the content</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Summary</strong></td>
+                                <td>Get a concise summary of the clinical content</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Key Findings</strong></td>
+                                <td>Extract and highlight important medical findings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Recommendations</strong></td>
+                                <td>Get suggested next steps or treatment considerations</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>📝 Generating Reports</h3>
+                        <ol>
+                            <li>After analysis, your findings appear in the <strong>Report Draft</strong> panel on the right</li>
+                            <li>Set the <strong>Examination Date</strong></li>
+                            <li>Add your own <strong>Doctor's Notes</strong></li>
+                            <li>Enter a <strong>Final Diagnosis</strong></li>
+                            <li>Click <strong>Generate Report</strong> to create a formatted report</li>
+                            <li>Use <strong>Export</strong> to save as PDF, Word, or copy to clipboard</li>
+                        </ol>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>🔒 Privacy & Security</h3>
+                        <div class="privacy-info">
+                            <p><i class="fas fa-check-circle" style="color: #48bb78;"></i> <strong>100% Local Processing</strong> - All AI runs in your browser</p>
+                            <p><i class="fas fa-check-circle" style="color: #48bb78;"></i> <strong>No Data Sent</strong> - Patient data never leaves your computer</p>
+                            <p><i class="fas fa-check-circle" style="color: #48bb78;"></i> <strong>HIPAA-Friendly</strong> - Designed with healthcare privacy in mind</p>
+                            <p><i class="fas fa-check-circle" style="color: #48bb78;"></i> <strong>Works Offline</strong> - After first load, works without internet</p>
+                        </div>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>⚠️ Important Reminder</h3>
+                        <div class="warning-box">
+                            <p><strong>This tool is meant to assist, not replace, your clinical judgment.</strong></p>
+                            <p>Always verify AI-generated findings against your professional expertise and established medical guidelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-section">
+                        <h3>🆘 Need Help?</h3>
+                        <p>Report issues or get support: <a href="https://github.com/satishskid/localclinic-ai/issues" target="_blank">GitHub Issues</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary modal-close">Got it!</button>
                 </div>
             </div>
         </div>
