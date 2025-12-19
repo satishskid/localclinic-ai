@@ -52,6 +52,9 @@
                     </div>
                 </div>
                 <div class="header-right">
+                    <button id="training-mode-btn" class="btn btn-secondary training-toggle">
+                        <i class="fas fa-graduation-cap"></i> Training Mode
+                    </button>
                     <span id="doctor-name">Dr. Smith</span>
                     <button id="logout-btn" class="btn btn-icon">
                         <i class="fas fa-sign-out-alt"></i>
@@ -82,6 +85,166 @@
                         </ul>
                     </div>
                 </aside>
+
+                <!-- Training Mode Panel (Hidden by default) -->
+                <div id="training-mode-panel" class="training-panel hidden">
+                    <div class="training-header">
+                        <div class="training-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h2>Training Mode</h2>
+                            <span class="training-badge">Learn how AI analysis works</span>
+                        </div>
+                        <button id="exit-training-btn" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Exit Training
+                        </button>
+                    </div>
+                    
+                    <div class="training-intro">
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <i class="fas fa-lock"></i>
+                                <span>100% Local Processing</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fas fa-database"></i>
+                                <span>Public Medical Datasets</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fab fa-github"></i>
+                                <span>Open Source Models</span>
+                            </div>
+                        </div>
+                        <p class="training-desc">Practice with real medical data from public Hugging Face datasets. See how the AI analyzes symptoms before using it with your patients.</p>
+                    </div>
+                    
+                    <div class="training-content">
+                        <!-- Dataset Info -->
+                        <div class="dataset-info">
+                            <h3><i class="fab fa-hubspot"></i> Powered by Hugging Face</h3>
+                            <p>These sample cases are derived from publicly available medical datasets. All processing happens locally in your browser.</p>
+                            <div class="dataset-links">
+                                <a href="https://huggingface.co/Xenova/distilbert-base-uncased-finetuned-sst-2-english" target="_blank" class="dataset-link">
+                                    <i class="fas fa-brain"></i> View AI Model Card
+                                </a>
+                                <a href="https://huggingface.co/datasets" target="_blank" class="dataset-link">
+                                    <i class="fas fa-database"></i> Hugging Face Datasets
+                                </a>
+                                <a href="https://huggingface.co/docs/transformers.js" target="_blank" class="dataset-link">
+                                    <i class="fas fa-code"></i> Transformers.js Docs
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Sample Cases -->
+                        <div class="training-samples">
+                            <h3><i class="fas fa-clipboard-list"></i> Sample Medical Cases</h3>
+                            <p>Click on any case to load it and practice AI analysis:</p>
+                            
+                            <div class="sample-categories">
+                                <!-- ENT Cases -->
+                                <div class="sample-category">
+                                    <h4><i class="fas fa-ear-deaf"></i> ENT Cases</h4>
+                                    <div class="sample-cards">
+                                        <div class="sample-card" data-sample="ent-1">
+                                            <div class="sample-icon"><i class="fas fa-head-side-virus"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Acute Otitis Media</h5>
+                                                <p>5-year-old with ear pain, fever, and hearing difficulty</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                        <div class="sample-card" data-sample="ent-2">
+                                            <div class="sample-icon"><i class="fas fa-head-side-cough"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Chronic Sinusitis</h5>
+                                                <p>Adult with nasal congestion and facial pressure for 3 months</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                        <div class="sample-card" data-sample="ent-3">
+                                            <div class="sample-icon"><i class="fas fa-comment-medical"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Tonsillitis</h5>
+                                                <p>Teenager with sore throat, difficulty swallowing, and swollen tonsils</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Dental Cases -->
+                                <div class="sample-category">
+                                    <h4><i class="fas fa-tooth"></i> Dental Cases</h4>
+                                    <div class="sample-cards">
+                                        <div class="sample-card" data-sample="dental-1">
+                                            <div class="sample-icon"><i class="fas fa-teeth"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Dental Caries</h5>
+                                                <p>Patient with tooth sensitivity and visible cavity on molar</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                        <div class="sample-card" data-sample="dental-2">
+                                            <div class="sample-icon"><i class="fas fa-teeth-open"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Periodontal Disease</h5>
+                                                <p>Adult with bleeding gums and loose teeth</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                        <div class="sample-card" data-sample="dental-3">
+                                            <div class="sample-icon"><i class="fas fa-x-ray"></i></div>
+                                            <div class="sample-info">
+                                                <h5>Impacted Wisdom Tooth</h5>
+                                                <p>Young adult with jaw pain and swelling near third molar</p>
+                                            </div>
+                                            <button class="btn btn-small btn-primary load-sample-btn">Try This</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Training Playground -->
+                        <div class="training-playground" id="training-playground" style="display: none;">
+                            <h3><i class="fas fa-flask"></i> Analysis Playground</h3>
+                            <div class="playground-content">
+                                <div class="playground-case">
+                                    <h4 id="playground-case-title">Case Title</h4>
+                                    <div class="case-notes" id="playground-case-notes">
+                                        <!-- Loaded case content will appear here -->
+                                    </div>
+                                </div>
+                                <div class="playground-actions">
+                                    <p>Select text above and try these analysis options:</p>
+                                    <div class="playground-buttons">
+                                        <button class="btn btn-primary" id="playground-analyze-btn">
+                                            <i class="fas fa-magic"></i> Analyze Selection
+                                        </button>
+                                        <button class="btn btn-secondary" id="playground-summary-btn">
+                                            <i class="fas fa-file-alt"></i> Summarize Case
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="playground-result" id="playground-result">
+                                    <h4><i class="fas fa-robot"></i> AI Analysis Result</h4>
+                                    <div class="result-box" id="playground-result-content">
+                                        <p class="placeholder-text">Select text from the case and click "Analyze Selection" to see AI analysis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="playground-tips">
+                                <h4><i class="fas fa-lightbulb"></i> Training Tips</h4>
+                                <ul>
+                                    <li>Try selecting specific symptoms like "ear pain" or "fever"</li>
+                                    <li>The AI identifies medical concepts and their relationships</li>
+                                    <li>All analysis runs locally - your data never leaves your device</li>
+                                    <li>When ready, exit training mode to analyze real patient data</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Content Area -->
                 <main class="content-area">
